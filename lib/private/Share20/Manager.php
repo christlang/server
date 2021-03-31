@@ -428,7 +428,7 @@ class Manager implements IManager {
 			$date->setTime(0, 0, 0);
 			$date->add(new \DateInterval('P' . $this->shareApiInternalDefaultExpireDays() . 'D'));
 			if ($date < $expirationDate) {
-				$message = $this->l->t('Can’t set expiration date more than %s days in the future', [$this->shareApiInternalDefaultExpireDays()]);
+				$message = $this->l->n('Can’t set expiration date more than %n day in the future', 'Can’t set expiration date more than %n days in the future', $this->shareApiInternalDefaultExpireDays());
 				throw new GenericShareException($message, $message, 404);
 			}
 		}
@@ -504,7 +504,7 @@ class Manager implements IManager {
 			$date->setTime(0, 0, 0);
 			$date->add(new \DateInterval('P' . $this->shareApiLinkDefaultExpireDays() . 'D'));
 			if ($date < $expirationDate) {
-				$message = $this->l->t('Can’t set expiration date more than %s days in the future', [$this->shareApiLinkDefaultExpireDays()]);
+				$message = $this->l->n('Can’t set expiration date more than %n day in the future', 'Can’t set expiration date more than %n days in the future', $this->shareApiLinkDefaultExpireDays());
 				throw new GenericShareException($message, $message, 404);
 			}
 		}
@@ -999,7 +999,7 @@ class Manager implements IManager {
 			if (empty($plainTextPassword) && $share->getSendPasswordByTalk()) {
 				throw new \InvalidArgumentException('Can’t enable sending the password by Talk with an empty password');
 			}
-	
+
 			/**
 			 * If we're in a mail share, we need to force a password change
 			 * as either the user is not aware of the password or is already (received by mail)
